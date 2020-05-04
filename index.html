@@ -3,6 +3,8 @@
     <head>
         <title>My Life During Quarantine</title>
 
+        <link rel="stylesheet" type="text/css" href="css/style.scss">
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script> 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
@@ -12,47 +14,72 @@
         <script src="https://cdn.rawgit.com/gladeye/aframe-preloader-component/1.0.0/dist/aframe-preloader-component.min.js"></script>
         <script src="node_modules/aframe-no-click-look-controls/dist/aframe-no-click-look-controls.min.js"></script> 
         <script src="https://unpkg.com/@editvr/aframe-dialog-popup-component@1.7.2/dist/aframe-dialog-popup-component.min.js"></script>
+        <script src="https://rawgit.com//master/dist/aframe-viewable-component.min.js"></script>
+
 
     
     </head>
     <body>
-        <a-scene preloader look-controls-enabled="true" vr-mode-ui="enabled: false">
-            <a-camera position="1 3 5"></a-camera>
-            <a-assets preload="true">
-                <a-asset-item id="model" src="3Dmodels/preloader.obj" preload="true"></a-asset-item>
-                <img src="img/background.jpg" id="360photo" preload="true">
-                <img src="img/floor.jpg" id="floor" preload="true">
-                <sound src="music/background music.mp3" id="bgm" preload="true"></sound>
-                <a-asset-item id="character-obj" src='3Dmodels/character.obj' preload="true"></a-asset-item>
-                <a-asset-item id="character-mtl" src="3Dmodels/character.mtl" preload="true"></a-asset-item>
-                <a-asset-item id="bunny-obj" src="3Dmodels/bunny.obj" preload="true"></a-asset-item>
-                <a-asset-item id="bunny-mtl" src="3Dmodels/bunny.mtl" preload="true"></a-asset-item>
-                <a-asset-item id="window-obj" src="3Dmodels/window.obj" preload="true"></a-asset-item>
-                <a-asset-item id="window-mtl" src="3Dmodels/window.mtl" preload="true"></a-asset-item>
-                <a-asset-item id="carpetSmall-obj" src="3Dmodels/carpet_small.obj" preload="true"></a-asset-item>
-                <a-asset-item id="carpetSmall-mtl" src="3Dmodels/carpet_small.mtl" preload="true"></a-asset-item>
-                <a-asset-item id="door-obj" src="3Dmodels/door.obj" preload="true"></a-asset-item>
-                <a-asset-item id="door-mtl" src="3Dmodels/door.mtl" preload="true"></a-asset-item>
-                <a-asset-item id="calendar-obj" src="3Dmodels/calendar.obj" preload="true"></a-asset-item>
-                <a-asset-item id="calendar-mtl" src="3Dmodels/calendar.mtl" preload="true"></a-asset-item>
-                <a-asset-item id="drawer-obj" src="3Dmodels/drawer.obj" preload="true"></a-asset-item>
-                <a-asset-item id="drawer-mtl" src="3Dmodels/drawer.mtl" preload="true"></a-asset-item>
-                <a-asset-item id="bookshelf-obj" src="3Dmodels/bookshelf.obj" preload="true"></a-asset-item>
-                <a-asset-item id="bookshelf-mtl" src="3Dmodels/bookshelf.mtl" preload="true"></a-asset-item>
-                <a-asset-item id="drink-obj" src="3Dmodels/drink.obj" preload="true"></a-asset-item>
-                <a-asset-item id="drink-mtl" src="3Dmodels/drink.mtl" preload="true"></a-asset-item>
-                <a-asset-item id="snack-obj" src="3Dmodels/snack2.obj" preload="true"></a-asset-item>
-                <a-asset-item id="snack-mtl" src="3Dmodels/snack2.mtl" preload="true"></a-asset-item>
-                <a-asset-item id="carpet-obj" src="3Dmodels/carpet.obj" preload="true"></a-asset-item>
-                <a-asset-item id="carpet-mtl" src="3Dmodels/carpet.mtl" preload="true"></a-asset-item>
-                <a-asset-item id="ipad-obj" src="3Dmodels/ipad.obj" preload="true"></a-asset-item>
-                <a-asset-item id="ipad-mtl" src="3Dmodels/ipad.mtl" preload="true"></a-asset-item>
-                <a-asset-item id="switch-obj" src="3Dmodels/switch.obj" preload="true"></a-asset-item>
-                <a-asset-item id="switch-mtl" src="3Dmodels/switch.mtl" preload="true"></a-asset-item>
-                <a-asset-item id="tv-obj" src="3Dmodels/tv.obj" preload="true"></a-asset-item>
-                <a-asset-item id="tv-mtl" src="3Dmodels/tv.mtl" preload="true"></a-asset-item>
-                <a-asset-item id="wall-obj" src="3Dmodels/wall.obj" preload="true"></a-asset-item>
-                <a-asset-item id="wall-mtl" src="3Dmodels/wall.mtl" preload="true"></a-asset-item>
+
+        <div class="preloader">
+            <div class="preloader__container">
+                  <h1 class="preloader__container__percent"></h1>
+              <div class="preloader__container__preload">
+                <div class="preloader__container__preload__dot">         </div>
+                <div class="preloader__container__preload__dot">         </div>
+                <div class="preloader__container__preload__dot">         </div>
+                <div class="preloader__container__preload__dot">         </div>
+              </div>
+            </div>
+          </div>
+         
+
+          <a-scene preloader="autoInject: false; target: #preloader;"  look-controls-enabled="true" vr-mode-ui="enabled: false">
+            
+            <a-entity position="1 1 5" >
+                <a-camera look-controls viewable="maxyaw:20;maxpitch:70">
+                <a-entity cursor="fuse: true; fuseTimeout: 500"
+            position="0 0 -1"
+            geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.02"
+            material="color: #00FFD7  ; shader: flat"></a-entity>
+        </a-camera>
+            </a-entity>
+            
+
+            <a-assets>
+                <img src="img/background.jpg" id="360photo">
+                <img src="img/floor.jpg" id="floor">
+                <sound src="music/background music.mp3" id="bgm"></sound>
+                <a-asset-item id="character-obj" src='3Dmodels/character.obj'></a-asset-item>
+                <a-asset-item id="character-mtl" src="3Dmodels/character.mtl"></a-asset-item>
+                <a-asset-item id="bunny-obj" src="3Dmodels/bunny.obj"></a-asset-item>
+                <a-asset-item id="bunny-mtl" src="3Dmodels/bunny.mtl"></a-asset-item>
+                <a-asset-item id="window-obj" src="3Dmodels/window.obj"></a-asset-item>
+                <a-asset-item id="window-mtl" src="3Dmodels/window.mtl"></a-asset-item>
+                <a-asset-item id="carpetSmall-obj" src="3Dmodels/carpet_small.obj"></a-asset-item>
+                <a-asset-item id="carpetSmall-mtl" src="3Dmodels/carpet_small.mtl"></a-asset-item>
+                <a-asset-item id="door-obj" src="3Dmodels/door.obj"></a-asset-item>
+                <a-asset-item id="door-mtl" src="3Dmodels/door.mtl"></a-asset-item>
+                <a-asset-item id="calendar-obj" src="3Dmodels/calendar.obj"></a-asset-item>
+                <a-asset-item id="calendar-mtl" src="3Dmodels/calendar.mtl"></a-asset-item>
+                <a-asset-item id="drawer-obj" src="3Dmodels/drawer.obj"></a-asset-item>
+                <a-asset-item id="drawer-mtl" src="3Dmodels/drawer.mtl"></a-asset-item>
+                <a-asset-item id="bookshelf-obj" src="3Dmodels/bookshelf.obj"></a-asset-item>
+                <a-asset-item id="bookshelf-mtl" src="3Dmodels/bookshelf.mtl"></a-asset-item>
+                <a-asset-item id="drink-obj" src="3Dmodels/drink.obj"></a-asset-item>
+                <a-asset-item id="drink-mtl" src="3Dmodels/drink.mtl"></a-asset-item>
+                <a-asset-item id="snack-obj" src="3Dmodels/snack2.obj"></a-asset-item>
+                <a-asset-item id="snack-mtl" src="3Dmodels/snack2.mtl"></a-asset-item>
+                <a-asset-item id="carpet-obj" src="3Dmodels/carpet.obj"></a-asset-item>
+                <a-asset-item id="carpet-mtl" src="3Dmodels/carpet.mtl"></a-asset-item>
+                <a-asset-item id="ipad-obj" src="3Dmodels/ipad.obj"></a-asset-item>
+                <a-asset-item id="ipad-mtl" src="3Dmodels/ipad.mtl"></a-asset-item>
+                <a-asset-item id="switch-obj" src="3Dmodels/switch.obj"></a-asset-item>
+                <a-asset-item id="switch-mtl" src="3Dmodels/switch.mtl"></a-asset-item>
+                <a-asset-item id="tv-obj" src="3Dmodels/tv.obj"></a-asset-item>
+                <a-asset-item id="tv-mtl" src="3Dmodels/tv.mtl"></a-asset-item>
+                <a-asset-item id="wall-obj" src="3Dmodels/wall.obj"></a-asset-item>
+                <a-asset-item id="wall-mtl" src="3Dmodels/wall.mtl"></a-asset-item>
             </a-assets>
 
             <a-sky src="#360photo"></a-sky>
@@ -62,45 +89,46 @@
 
 
             <a-entity obj-model="obj: 3Dmodels/character.obj; mtl: 3Dmodels/character.mtl" position="-0.71839 -1.84506 -4.62848" rotation="0 -38.34 0" scale="2 2 2"
-                animation="property: position; to: -0.71839 -1 -4.62848; dur: 250; easing: linear; loop: true; dir: alternate"
-                event-set__enter="_event: mouseenter; _target: #characterText; visible: true"
-                event-set__leave="_event: mouseleave; _target: #characterText; visible: false">
-                <a-text id="characterText" value="Hi, I am Jin!" align="center" color="#FFF" visible="" position="2.8382 2.44834 -0.7392" geometry="primitive: plane; width: 1.75" material="color: #00A8FF" ; opacity="1" text=""></a-text>
+            animation="property: position; to: -0.71839 -1 -4.62848; dur: 250; easing: linear; loop: true; dir: alternate"
+            event-set__enter="_event: mouseenter; _target: #characterText; visible: true"
+            event-set__leave="_event: mouseleave; _target: #characterText; visible: false">
+            <a-text id="characterText" value="Hi, I am Jin!" align="center" color="#FFF" visible="" position="2.8382 2.44834 -0.7392" geometry="primitive: plane; width: 1.75" material="color: #7CCAE7" ; opacity="1" text=""></a-text>
+        
             </a-entity>
 
             <a-entity obj-model="obj: 3Dmodels/bunny.obj; mtl: 3Dmodels/bunny.mtl" position="-1.7 4.14448 -13.67099" scale="0.7 0.7 0.7"
-                event-set__enter="_event: mouseenter; _target: #bunnyText; visible: true"
-                event-set__leave="_event: mouseleave; _target: #bunnyText; visible: false" preload="true">
-                <a-text id="bunnyText" value="I am a bunny!" align="center" color="#FFF" visible="" position="1.5 4 5" geometry="primitive: plane; width: 1.75" material="color: #00A8FF ; opacity: 1" text="" scale="4 4 4"></a-text>
-            </a-entity>
-
+            event-set__enter="_event: mouseenter; _target: #bunnyText; visible: true"
+            event-set__leave="_event: mouseleave; _target: #bunnyText; visible: false">
+            <a-text id="bunnyText" value="I am a bunny!" align="center" color="#FFF" visible="" position="1.5 4 5" geometry="primitive: plane; width: 1.75" material="color: #E562BF ; opacity: 1" text="" scale="4 4 4"></a-text>
+            ></a-entity>
+            ></a-entity>
             <a-entity obj-model="obj: 3Dmodels/window.obj; mtl: 3Dmodels/window.mtl" position="-8.45832 1.29284 -6.35216" scale="2.7 2.7 2.7"></a-entity>
             <a-entity obj-model="obj: 3Dmodels/carpet_small.obj; mtl: 3Dmodels/carpet_small.mtl" position="-16.42707 -3.03057 -8.64692" scale="3 3 3"></a-entity>
             <a-entity obj-model="obj: 3Dmodels/door.obj; mtl: 3Dmodels/door.mtl" position="-17.81736 -3.90771 -5.34036" scale="3.5 4 3"></a-entity>
 
             <a-entity obj-model="obj: 3Dmodels/calendar.obj; mtl: 3Dmodels/calendar.mtl" position="0.61989 4.2239 -10.51673" scale="1.5 1.5 1.5"
-                event-set__enter="_event: mouseenter; _target: #calendarText; visible: true"
-                event-set__leave="_event: mouseleave; _target: #calendarText; visible: false" preload="true">
-                <a-text id="calendarText" value="Calendar" align="center" color="#FFF" visible="false" position="1 2 3.5" geometry="primitive: plane; width: 1.75" material="color: #00A8FF; opacity: 1" text="" scale="1.5 1.5 1.5"></a-text>
-            </a-entity>
+            event-set__enter="_event: mouseenter; _target: #calendarText; visible: true"
+            event-set__leave="_event: mouseleave; _target: #calendarText; visible: false">
+            <a-text id="calendarText" value="Calendar" align="center" color="#FFF" visible="false" position="1 2 3.5" geometry="primitive: plane; width: 1.75" material="color: #00A8FF; opacity: 1" text="" scale="1.5 1.5 1.5"></a-text>
+            ></a-entity>
 
             <a-entity obj-model="obj: 3Dmodels/drawer.obj; mtl: 3Dmodels/drawer.mtl" position="-4.32656 -2.44494 -10.36708" scale="2.5 2.5 2.5"></a-entity>
-            <a-entity obj-model="obj: 3Dmodels/bookshelf.obj; mtl: 3Dmodels/bookshelf.mtl" position="18.6063 -3.91373 -18.52455" rotation="0 180 0" scale="4 4 4" preload="true"></a-entity>
+            <a-entity obj-model="obj: 3Dmodels/bookshelf.obj; mtl: 3Dmodels/bookshelf.mtl" position="18.6063 -3.91373 -18.52455" rotation="0 180 0" scale="4 4 4"></a-entity>
             <a-entity obj-model="obj: 3Dmodels/drink.obj; mtl: 3Dmodels/drink.mtl" position="-1.78405 -0.91178 -4.20502"></a-entity>
             <a-entity obj-model="obj: 3Dmodels/snack2.obj; mtl: 3Dmodels/snack2.mtl" position="7.20361 -0.6935 -1.42079" scale="0.7 0.7 0.7"></a-entity>
             <a-entity obj-model="obj: 3Dmodels/carpet.obj; mtl: 3Dmodels/carpet.mtl" position="-7.94123 -0.99737 5.05793" scale="8 1 8"></a-entity>
 
             <a-entity obj-model="obj: 3Dmodels/ipad.obj; mtl: 3Dmodels/ipad.mtl" position="-1.11968 -0.87581 -2.25131" rotation="0 -62.93 0" scale="2 1 2"
-                event-set__enter="_event: mouseenter; _target: #ipadText; visible: true"
-                event-set__leave="_event: mouseleave; _target: #ipadText; visible: false">
-                <a-text id="ipadText" value="Ipad" align="center" color="#FFF" visible="" position="3 3 0" geometry="primitive: plane; width: 1" material="color: #00A8FF ; opacity: 1" text="" rotation="0 50 0" scale="0.5 0.5 0.5"></a-text>
-            </a-entity>
+            event-set__enter="_event: mouseenter; _target: #ipadText; visible: true"
+            event-set__leave="_event: mouseleave; _target: #ipadText; visible: false">
+            <a-text id="ipadText" value="Ipad" align="center" color="#FFF" visible="" position="3 3 0" geometry="primitive: plane; width: 1" material="color: #333333 ; opacity: 1" text="" rotation="0 50 0" scale="0.5 0.5 0.5"></a-text>
+            ></a-entity>
 
             <a-entity obj-model="obj: 3Dmodels/switch.obj; mtl: 3Dmodels/switch.mtl" position="-6.07442 -1.86748 -0.79369" scale="2 2 2" rotation="0 -37.83011138130773 0"
-                event-set__enter="_event: mouseenter; _target: #switchText; visible: true"
-                event-set__leave="_event: mouseleave; _target: #switchText; visible: false">
-                <a-text id="switchText" value="Nintendo Switch" align="center" color="#FFF" visible="false" position="2.67715 2.44834 -0.61414" geometry="primitive: plane; width: 2" material="color: #00A8FF; opacity: 1" text="" rotation="0 70 0" scale="0.7 0.7 0.7"></a-text>
-            </a-entity>
+            event-set__enter="_event: mouseenter; _target: #switchText; visible: true"
+            event-set__leave="_event: mouseleave; _target: #switchText; visible: false">
+            <a-text id="switchText" value="Nintendo Switch" align="center" color="#FFF" visible="false" position="2.67715 2.44834 -0.61414" geometry="primitive: plane; width: 2" material="color: #E45858; opacity: 1" text="" rotation="0 70 0" scale="0.7 0.7 0.7"></a-text>
+            ></a-entity>
 
             <a-entity obj-model="obj: 3Dmodels/tv.obj; mtl: 3Dmodels/tv.mtl" position="-2.8447 -1.879 -2.55871" rotation="0 35 0" scale="2 2 2"></a-entity>
             <a-entity obj-model="obj: 3Dmodels/wall.obj; mtl: 3Dmodels/wall.mtl" position="-8.57167 0.5 26.43689" scale="10 10 10"></a-entity>
@@ -109,9 +137,30 @@
             <a-entity obj-model="obj: 3Dmodels/wall.obj; mtl: 3Dmodels/wall.mtl" position="28.25456 0 14.53004" scale="10 10 10" rotation="0 90 0"></a-entity>
             <a-entity obj-model="obj: 3Dmodels/wall.obj; mtl: 3Dmodels/wall.mtl" position="-15.8854 -25.41561 10.55476" scale="10 10 10" rotation="90 90 0"></a-entity>
 
-          
+
+            <a-entity dialog-popup="title: My Life During Quarantine; body: My life during quarantine is trapped in my room and play with every electronic device I can play.; openIconImage: img/openiconimg.png; closeIconImage: img/closeiconimg.png; image: img/figureimg.jpg" 
+            openOn="" dialogboxcolor="#4CAAC6;" openiconcolor="#F36F93;" closeiconcolor="#F55D6F;"   position="1.71839 4 1">
+                <a-entity id="null--open-icon" position="1.71839 2 -3.62848" geometry="primitive: octahedron; radius: 0.3" material="color: white" visible="false"></a-entity>
+
+                
+                
+                    
+                  
+            </a-entity>
+
+            
+
+                
+            
+
+            
+            
         </a-scene>
 
+        <div class="modal-backdrop in"></div>
 
         <script src="js/script.js" type="script" ></script>
+
     </body>
+
+</html>
