@@ -1,0 +1,27 @@
+{
+  "name": "jingxuan_finalproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "aframe-3d-calendar-component": "^1.0.2",
+    "aframe-event-set-component": "^5.0.0",
+    "aframe-no-click-look-controls": "^1.0.4",
+    "gsap": "^3.2.6",
+    "live-server": "^1.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JingxuanWang-sva/FinalProject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JingxuanWang-sva/FinalProject/issues"
+  },
+  "homepage": "https://github.com/JingxuanWang-sva/FinalProject#readme"
+}
