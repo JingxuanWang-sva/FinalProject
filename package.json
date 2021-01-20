@@ -7,7 +7,7 @@
     "aframe-3d-calendar-component": "^1.0.2",
     "aframe-event-set-component": "^5.0.0",
     "aframe-no-click-look-controls": "^1.0.4",
-    "gsap": "^3.2.6",
+    "gsap": "^3.6.0",
     "live-server": "^1.2.1"
   },
   "devDependencies": {},
